@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+Golf Score Tracker
+{% endblock %}
+{% block content %}
+<div class="calculationWaregem">
+	<form method="post">
+		<fieldset class="calculation">
+			<legend>Calculation</legend>
+			<label>Tee</label>
+			<select name="tee">
+				<option value="m_white">M White</option>
+				<option value="m_yellow">M Yellow</option>
+				<option value="m_blue">M Blue</option>
+				<option value="m_red">M Red</option>
+				<option value="w_blue">W Blue</option>
+				<option value="w_red">W Red</option>
+			</select>
+			<br>
+			<label>Handicap: </label>
+			<input type="text" placeholder="handicap" name="handicap" value="{{handicap}}"/>
+			<br>
+			<label>Stableford points: </label>
+			<input type="text" placeholder="stableford points" name="stableford_points" value="{{stableford_points}}"/>
+			<br>
+			<button type="submit" name="submit" class="myButton">Calculate</button>
+		</fieldset>
+		<br>
+		<label>Gross: </label>
+		<input type="text"  name="gross" value="{{gross}}" />
+		{% if error %}
+		<ul>
+			<li>{{error}}</li>
+		</ul>
+		{% endif %}
+	</form>
+</div>
+<div class="calculationOther hidden">
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+
+</head>
+
+<body>
+	<div id="content_wrap">
+	<header>
+		<h2><i class="fa-solid fa-golf-ball-tee"></i> Golf Score Tracker</h2>
+		<nav class="navbar">
+			<a href="{{ url_for('home') }}">Home</a>
+			<a href="{{ url_for('calculate') }}">Calculate</a>
+		</nav>
+	</header>
+	<main>
+		<div class="content">
+			{%block content %} {% endblock %}
+		</div>
+	</main>
+	</div>
+	<footer>
+			<p>Milan De Paepe</p>
+			<a href="https://github.com/MilanDP123" target="_blank"><i class="fab fa-github"></i> Github</a>
+
+	</footer>
+	<script src="https://kit.fontawesome.com/2508535896.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
