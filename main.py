@@ -1,15 +1,12 @@
 from flask import Flask, redirect, url_for, render_template, request
+from db import get_strokes
 
 app = Flask(__name__)
 
 
 def calculateGross(handicap, tee, stableford_points):
-    return str(72 + getStrokes(handicap, tee) + (36 - stableford_points))
-
-
-def getStrokes(handicap, tee):
-    # get strokes from database
-    return 0
+    strokes = get_strokes(tee, handicap)
+    return str(72 + strokes + (36 - stableford_points))
 
 
 @app.route("/")
@@ -38,7 +35,7 @@ def calculate():
                                    handicap=handicap)
 
         # calculation
-        gross = calculateGross(int(handicap), tee, int(stableford_points))
+        gross = calculateGross(float(handicap), tee, int(stableford_points))
 
         return render_template("calculate.html",
                                tee=tee,
