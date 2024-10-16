@@ -3,8 +3,7 @@ import psycopg2 as pg
 
 get_strokes_query = '''SELECT course_handicap FROM handicap
                 WHERE tee ILIKE %s
-                AND lower_bound <= %s
-                AND upper_bound >= %s'''
+                AND %s BETWEEN lower_bound AND upper_bound'''
 
 
 def execute_select_query(query, arguments):
@@ -39,4 +38,4 @@ def execute_select_query(query, arguments):
 
 
 def get_strokes(tee, handicap):
-    return int(execute_select_query(get_strokes_query, (tee, handicap, handicap)))
+    return int(execute_select_query(get_strokes_query, (tee, handicap)))

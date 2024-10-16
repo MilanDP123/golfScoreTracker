@@ -46,5 +46,20 @@ def calculate():
     return render_template("calculate.html")
 
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/update")
+def update():
+    return render_template("update.html")
+
+
+@app.route("/rounds")
+def rounds():
+    return render_template("rounds.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
