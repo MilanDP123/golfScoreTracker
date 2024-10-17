@@ -1,7 +1,9 @@
-from flask import Flask, redirect, url_for, render_template, request
-from db import get_strokes
+from flask import Flask, redirect, render_template, request, session, url_for
+import hashlib
+from db import get_strokes, get_usernames, check_password, get_userid
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "aasntuhea"
 
 
 def calculateGross(handicap, tee, stableford_points):
@@ -46,14 +48,32 @@ def calculate():
     return render_template("calculate.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def login():
+    if request.method == "POST":
+        username = request.form.get('username')
+        submit = request.form.get('submit')
+
+        if submit:
+            print("probleem")
+
+        if not username or username not in get_usernames():
+            return render_template("login.html",
+                                   error="Invalid username")
+
+        password = hashlib.sha256(
+            (request.form.get('password') + username).encode()).hexdigest()
+
+        check_p = check_password(username, password)
+        if not check_p:
+            return render_template("login.html",
+                                   error="Invalid username or password")
+        if check_p:
+            session["username"] = username
+            session["user_id"] = get_userid(username)
+            return redirect(url_for('home'))
+
     return render_template("login.html")
-
-
-@app.route("/update")
-def update():
-    return render_template("update.html")
 
 
 @app.route("/rounds")

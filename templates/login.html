@@ -1,6 +1,27 @@
 {% extends 'base.html' %}
 {% block title %}Login{% endblock %}
-
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
+{% endblock %}
 {% block content %}
-<h1>Coming soon!!</h1>
+<form method="post">
+<div class="login-box">
+        <div class="login-header">
+            <h2>Login</h2>
+        </div>
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="Username" name="username" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" placeholder="Password" name="password" autocomplete="off" required>
+        </div>
+        <div class="input-submit">
+            <button type="submit" name="submit" class="submit-btn" id="submit"></button>
+            <label for="submit">Sign In</label>
+        </div>
+        <div class="sign-up-link">
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+    </div>
+</form>
 {% endblock %}

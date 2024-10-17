@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+	{% block style %}{% endblock %}
 
 </head>
 
@@ -19,9 +20,8 @@
 		<nav class="navbar">
 			<a href="{{ url_for('home') }}">Home</a>
 			<a href="{{ url_for('calculate') }}">Calculate</a>
-			<a href="{{ url_for('login') }}">Login</a>
 			<a href="{{ url_for('rounds') }}">Rounds</a>
-			<a href="{{ url_for('update') }}">Updates</a>
+			<a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket"></i></a>
 		</nav>
 	</header>
 	<main>
