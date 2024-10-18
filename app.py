@@ -26,7 +26,6 @@ def calculate():
         stableford_points = request.form.get("stableford_points")
         handicap = request.form.get("handicap")
 
-        print(tee, stableford_points, handicap)
         if not stableford_points:
             return render_template("calculate.html",
                                    error="Please enter your stableford points.",
@@ -56,9 +55,6 @@ def login():
     if request.method == "POST":
         username = request.form.get('username')
         submit = request.form.get('submit')
-
-        if submit:
-            print("probleem")
 
         if not username or username not in get_usernames():
             return render_template("login.html",

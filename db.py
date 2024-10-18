@@ -1,5 +1,14 @@
 import psycopg2 as pg
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+hostname = 'pg-golfscoretracker-milandepaepe-e238.d.aivencloud.com'
+databasename = 'defaultdb'
+dbuser = 'avnadmin'
+dbport = 15977
+passw = os.getenv('PASSW')
 
 get_strokes_query = '''SELECT course_handicap FROM handicap
                 WHERE tee ILIKE %s
@@ -43,7 +52,6 @@ def execute_select_query(query, arguments):
         if cur is not None:
             cur.close()
 
-    print(result)
     return result
 
 
