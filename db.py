@@ -8,7 +8,7 @@ get_strokes_query = '''SELECT course_handicap FROM handicap
 
 get_usernames_query = ''' SELECT user_name FROM users'''
 
-get_userid_query = ''' SELECT userid FROM users WHERE user_name LIKE %s'''
+get_userid_query = ''' SELECT user_id FROM users WHERE user_name LIKE %s'''
 
 get_password_query = ''' SELECT password FROM users WHERE user_name LIKE %s'''
 
@@ -82,11 +82,11 @@ def get_usernames():
 
 
 def get_userid(username):
-    return execute_select_query(get_userid_query, username)[0]
+    return execute_select_query(get_userid_query, (username,))[0]
 
 
 def check_password(username, password):
-    return execute_select_query(get_password_query, username)[0] == password
+    return execute_select_query(get_password_query, (username,))[0] == password
 
 
 def new_user(username, password):

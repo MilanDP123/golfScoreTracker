@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Logout{% endblock %}
+{% block content %}
+	<h1>Logged out succesfully</h1>
+	<h2>You will be redirected in a second<h2>
+<script>
+function waitForMe() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, 2000);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    waitForMe().then(() => {
+		window.location.href = "{{ url_for('home') }}";
+    });
+});
+</script>
+{% endblock %}

@@ -8,6 +8,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="icon" href="https://i.etsystatic.com/16454555/r/il/f205d2/4762277869/il_1588xN.4762277869_89g1.jpg">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
 	{% block style %}{% endblock %}
 
@@ -20,8 +21,12 @@
 		<nav class="navbar">
 			<a href="{{ url_for('home') }}">Home</a>
 			<a href="{{ url_for('calculate') }}">Calculate</a>
+			{% if session["logged_in"] %}
 			<a href="{{ url_for('rounds') }}">Rounds</a>
+			<a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a>
+			{% else %}
 			<a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket"></i></a>
+			{% endif %}
 		</nav>
 	</header>
 	<main>
