@@ -32,10 +32,11 @@ def execute_select_query(query, arguments):
 
     try:
         conn = pg.connect(
-            host='localhost',
-            dbname='golfscoretracker',
-            user='postgres',
-            port=5432)
+            host=hostname,
+            dbname=databasename,
+            user=dbuser,
+            port=dbport,
+            password=passw)
 
         cur = conn.cursor()
 
@@ -61,10 +62,11 @@ def execute_insert_query(query, arguments):
 
     try:
         conn = pg.connect(
-            host='localhost',
-            dbname='golfscoretracker',
-            user='postgres',
-            port=5432)
+            host=hostname,
+            dbname=databasename,
+            user=dbuser,
+            port=dbport,
+            password=passw)
 
         cur = conn.cursor()
 
