@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, url_for
 import hashlib
-from db import get_strokes, get_usernames, check_password, get_userid
+from db import get_strokes, get_usernames, check_password, get_userid, new_user
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "aasntuhea"
@@ -54,9 +54,8 @@ def calculate():
 def login():
     if request.method == "POST":
         username = request.form.get('username')
-        submit = request.form.get('submit')
 
-        if not username or username not in get_usernames():
+        if username not in get_usernames():
             return render_template("login.html",
                                    error="Invalid username")
 
@@ -74,6 +73,32 @@ def login():
             return redirect(url_for('rounds'))
 
     return render_template("login.html")
+
+
+@app.route("/signup", methods=["POST", "GET"])
+def signup():
+
+    if request.method == "POST":
+
+        username = request.form.get('username')
+
+        if username in get_usernames():
+            return render_template('signup.html',
+                                   error="Username unavailable")
+        password = hashlib.sha256(
+            (request.form.get('password') + username).encode()).hexdigest()
+        password2 = hashlib.sha256(
+            (request.form.get('password2') + username).encode()).hexdigest()
+
+        if password != password2:
+            return render_template('signup.html',
+                                   error="Passwords need to match")
+        new_user(username, password)
+        session["username"] = username
+        session["user_id"] = get_userid(username)
+        session["logged_in"] = True
+        return redirect(url_for('rounds'))
+    return render_template('signup.html')
 
 
 @app.route("/logout")

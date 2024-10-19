@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Sing up{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
+{% endblock %}
+{% block content %}
+<form method="post">
+	<div class="login-box">
+		<div class="login-header">
+			<h2>Sign Up</h2>
+		</div>
+		<div class="input-box">
+			<input type="text" class="input-field" placeholder="Username" name="username" autocomplete="off"
+				required>
+		</div>
+		<div class="input-box">
+			<input type="password" class="input-field" placeholder="Password" name="password"
+				autocomplete="off" required>
+		</div>
+		<div class="input-box">
+			<input type="password" class="input-field" placeholder="Repeat Password" name="password2"
+				autocomplete="off" required>
+		</div>
+		<div class="input-submit">
+			<button type="submit" name="submit" class="submit-btn" id="submit"></button>
+			<label for="submit">Sign Up</label>
+		</div>
+		<div class="sign-up-link">
+			<p>Arleady have an account? <a href="{{ url_for('login') }}">Sign In</a></p>
+		</div>
+	</div>
+</form>
+
+{% if error %}
+<ul class="s_text">
+    <li>{{error}}</li>
+</ul>
+{% endif %}
+ 
+{% endblock %}

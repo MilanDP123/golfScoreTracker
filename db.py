@@ -41,7 +41,7 @@ def execute_select_query(query, arguments):
         cur = conn.cursor()
 
         cur.execute(query, arguments)
-        result = cur.fetchone()
+        result = cur.fetchall()
 
         conn.commit()
 
@@ -84,11 +84,13 @@ def execute_insert_query(query, arguments):
 
 
 def get_strokes(tee, handicap):
-    return int(execute_select_query(get_strokes_query, (tee, handicap))[0])
+    return int(execute_select_query(get_strokes_query, (tee, handicap))[0][0])
 
 
 def get_usernames():
-    return execute_select_query(get_usernames_query, '')
+    usernames = [t[0] for t in execute_select_query(get_usernames_query, '')]
+
+    return usernames
 
 
 def get_userid(username):
@@ -96,7 +98,7 @@ def get_userid(username):
 
 
 def check_password(username, password):
-    return execute_select_query(get_password_query, (username,))[0] == password
+    return execute_select_query(get_password_query, (username,))[0][0] == password
 
 
 def new_user(username, password):

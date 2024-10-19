@@ -35,7 +35,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	z-index: 100;
+	z-index: 100
 }
 
 .navbar a {
@@ -115,6 +115,9 @@ footer a {
 	padding: 20px;
 }
 
+ul {
+	list-style-type: none;
+}
 
 /* Button code */
 
